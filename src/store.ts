@@ -1,15 +1,19 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import { setShowDialog, setStyle } from './isShowDialogSlice';
+function reducer(currentState: any, action:{type: any}) {
 
-const rootReducer = combineReducers({
-  isShowDialog: setShowDialog,
-  style : setStyle
-})
+	if (currentState === undefined) {
+		return {
+			isShowDialog: false,
+		};
+	}
 
-const store = configureStore({
-  reducer: rootReducer
-});
+	const newState = {...currentState};
+	
+	if (action.type === 'ChangeDialog') {
+		newState.isShowDialog = !newState.isShowDialog;
+        console.log(newState);
+	}
 
-export type RootState = ReturnType<typeof store.getState>;
+	return newState;
+}
 
-export default store;
+export default reducer;
