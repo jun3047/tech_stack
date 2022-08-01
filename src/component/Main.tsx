@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled'
+import Dialog from './Dialog';
 
 const CodeBoxWrap = styled.main`
     width: 100vw;
@@ -30,26 +31,29 @@ const CodeBoxTitle = styled.h2`
 const Main: React.FunctionComponent = () => {
 
     return (
-        <CodeBoxWrap>
-            <CodeBox>
-                <Code>
-                const CodeBoxTitle = styled.h2` <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; font-weight: 700; <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; font-size: 34px; <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; margin: 0; <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; position: absolute; <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; left: 30px; <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; bottom: 19px; <br />
-`                </Code>
-                <CodeBoxTitle>
-                    JavaScript
-                </CodeBoxTitle>
-            </CodeBox>
-            <CodeBox>
-            </CodeBox>
-            <CodeBox>
-            </CodeBox>
-        </CodeBoxWrap>
+        <>
+            <Dialog/>
+            <CodeBoxWrap>
+                <CodeBox>
+                    <Code>
+                    const CodeBoxTitle = styled.h2` <br />
+        &nbsp; &nbsp; &nbsp; &nbsp; font-weight: 700; <br />
+        &nbsp; &nbsp; &nbsp; &nbsp; font-size: 34px; <br />
+        &nbsp; &nbsp; &nbsp; &nbsp; margin: 0; <br />
+        &nbsp; &nbsp; &nbsp; &nbsp; position: absolute; <br />
+        &nbsp; &nbsp; &nbsp; &nbsp; left: 30px; <br />
+        &nbsp; &nbsp; &nbsp; &nbsp; bottom: 19px; <br />
+    `                </Code>
+                    <CodeBoxTitle>
+                        JavaScript
+                    </CodeBoxTitle>
+                </CodeBox>
+                <CodeBox>
+                </CodeBox>
+                <CodeBox>
+                </CodeBox>
+            </CodeBoxWrap>
+        </>
     )
 }
 

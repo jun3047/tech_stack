@@ -1,39 +1,23 @@
 .Dialog {
+    box-sizing: border-box;
     width: 400px;
-    height: 400px;
-    background-color: lightblue;
-    border-radius: 10px;
-    border: 3px solid grey;
+    height: 500px;
+    background-color: #EEEEEE;
+    border-radius: 22px;
+    border: 1px solid #000000;
     position: absolute;
     cursor: move;
-    top: 150px;
-    left: 520px;
-}
-
-.hidden {
-    display: none;
 }
 
 .DialogTitle {
+    height: 40px;
+    text-align: center;
     font-weight: bold;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-bottom: 10px;
-    border-bottom: 3px solid grey;
+    font-size: 23px;
 }
 
 .Contents {
-    padding-top: 50px;
-    padding-bottom: 200px;
-}
-
-.closeButton {
-    font-size: 12px;
-    width: 100px;
-    color: black;
-    border: 2px solid black;
-    border-radius: 25px;
-    padding: 10px;
-    margin: 10px;
-    margin-left: 140px;
-    cursor: pointer;
+    padding: 10px 20px;
 }

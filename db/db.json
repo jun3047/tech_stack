@@ -1,12 +1,12 @@
 {
     "none-none-none-none": {
-        "JavaScript" : "",
-        "CSS": "",
-        "HTML": ""
+        "JavaScript" : "js",
+        "CSS": "css",
+        "HTML": "html"
     },
     "React-none-none-none": {
-        "React" : "",
-        "CSS": "",
-        "HTML": ""
+        "React" : " ",
+        "CSS": " ",
+        "HTML": " "
     }
 }
