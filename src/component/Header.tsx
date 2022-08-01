@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled'
 import { useDispatch, useSelector } from 'react-redux';
-import { setShowDialog, setStyle } from '../isShowDialogSlice';
-import { RootState } from '../store';
 
 const Header: React.FunctionComponent = () => {
 
   const dispatch = useDispatch();
-  const isShowDialog = useSelector<RootState, boolean>(state => {
-    return state.isShowDialog;
-  });
-
   function onClick() {
-    if (isShowDialog) {
-      dispatch(setStyle({ display: 'block' }));
-    } else {
-      dispatch(setStyle({display: 'none'}));
-    }
+    dispatch({ type: 'ChangeDialog' });
   }
 
   return (

@@ -12,7 +12,7 @@ function reducer(currentState: any, action:{type: any}) {
 		newState.isShowDialog = !newState.isShowDialog;
         console.log(newState);
 	}
-
+  
 	return newState;
 }
 

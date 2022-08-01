@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setStyle } from '../isShowDialogSlice';
-import { RootState } from '../store';
+import { useSelector } from 'react-redux';
 import './Dialog.css';
 import Meun from './Meun';
 
@@ -10,14 +8,7 @@ const Dialog: React.FunctionComponent = () => {
     const [diffX, setDiffX] = useState<number>();
     const [diffY, setDiffY] = useState<number>();
     const [isDragging, setIsDragging] = useState<boolean>(false);
-    const [loaclStyle, setLoaclStyle] = useState<any>({});
-
-    const dispatch = useDispatch();
-    const style = useSelector<RootState, any>(state => {
-        return state.style;
-    });
-    console.log("first: " + style);
-
+    const [loaclStyle, setLoaclStyle] = useState<React.CSSProperties>({left: 0, top: 0});
 
     const dragStart = (e: React.MouseEvent<HTMLButtonElement> | any) => {
         setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
@@ -35,20 +26,17 @@ const Dialog: React.FunctionComponent = () => {
                 left: left,
                 top: top
             });
-            console.log("second: " + style);
-            console.log("dargging");
         }
     }
 
     const dragEnd = (e: React.MouseEvent<HTMLButtonElement> | any) => {
         setIsDragging(false);
-        console.log("dargEnd");
     }
 
-
+    const isShowDialog = useSelector((state: any) => state.isShowDialog);
 
     return (
-        <div className="Dialog" style={loaclStyle} onMouseDown={dragStart} onMouseMove={dragging} onMouseUp={dragEnd}>
+        <div className="Dialog" style={isShowDialog? loaclStyle : {display: "none"}} onMouseDown={dragStart} onMouseMove={dragging} onMouseUp={dragEnd}>
             <div className='DialogTitle'>Tech Stack</div>
             <div className='Contents'>
                 <Meun />

@@ -10,18 +10,5 @@ const isShowDialogSlice = createSlice({
   }
 });
 
-const styleSlice = createSlice({
-    name:'styleSlice',
-    initialState:{value: {}},
-    reducers:{
-      setStyle:(state, actions: PayloadAction<any>)=>{
-        state.value = actions.payload;
-      }
-    }
-  });
-
-
-
-export default {isShowDialogSlice, styleSlice};
+export default isShowDialogSlice;
 export const {setShowDialog} = isShowDialogSlice.actions;
-export const {setStyle} = styleSlice.actions;

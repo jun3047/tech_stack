@@ -25,14 +25,16 @@ const MeunBtn = styled.button`
     }
 `
 
-
+const style: React.CSSProperties = {
+    backgroundColor: "#3FDCE5"
+}
 
 const Meun: React.FunctionComponent = () => {
     return (
         <>
             <MeunWrap>
                 <MeunTitle>JavaScript Framework</MeunTitle>
-                <MeunBtn>React</MeunBtn>
+                <MeunBtn className='active'>React</MeunBtn>
                 <MeunBtn>Angular</MeunBtn>
                 <MeunBtn>Vue.js</MeunBtn>
             </MeunWrap>
