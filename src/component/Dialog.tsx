@@ -14,11 +14,10 @@ const Dialog: React.FunctionComponent = () => {
         setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
         setDiffY(e.screenY - e.currentTarget.getBoundingClientRect().top);
         setIsDragging(true);
-        console.log("dargStart");
     }
 
     const dragging = (e: React.MouseEvent<HTMLButtonElement> | any) => {
-        if (isDragging && diffX != undefined && diffY != undefined) {
+        if (isDragging && diffX !== undefined && diffY !== undefined) {
             const left = e.screenX - diffX;
             const top = e.screenY - diffY;
 

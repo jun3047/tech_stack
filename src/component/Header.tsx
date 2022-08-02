@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from '@emotion/styled'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const Header: React.FunctionComponent = () => {
 
   const dispatch = useDispatch();
   function onClick() {
-    dispatch({ type: 'ChangeDialog' });
+    dispatch({ type: 'CHANGE_DIALOG' });
   }
 
   return (

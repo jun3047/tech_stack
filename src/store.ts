@@ -1,19 +1,30 @@
-function reducer(currentState: any, action:{type: any}) {
+//type
 
-	if (currentState === undefined) {
-		return {
-			isShowDialog: false,
-		};
-	}
+const CHANGE_BTN = 'CHANGE_BTN';
+const CHANGE_DIALOG = 'CHANGE_DIALOG';
 
-	const newState = {...currentState};
-	
-	if (action.type === 'ChangeDialog') {
-		newState.isShowDialog = !newState.isShowDialog;
-        console.log(newState);
+// const dispatch = useDispatch(); 
+// dispatch({ type: 'CHANGE_DIALOG' }); 값을 생신할 때
+
+// const isShowDialog = useSelector((state: any) => state.isShowDialog); 값을 쓸 때
+
+const initialState = {
+	isShowDialog: false,
+	// meunState: ["none","none","none","none"]
+};
+
+const reducer = (state: any = initialState, action:{type: any}) => {
+
+	switch (action.type){
+		case CHANGE_DIALOG:
+			return{
+				...state,
+				isShowDialog: !state.isShowDialog
+			}
+		default:
+			return state;
 	}
-  
-	return newState;
 }
+
 
 export default reducer;
