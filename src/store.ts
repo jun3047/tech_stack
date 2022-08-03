@@ -11,7 +11,12 @@ const UPDATE_OPTION = 'UPDATE_OPTION';
 
 const initialState = {
 	isShowDialog: false,
-	nowOption: "none-none-none-none"
+	nowOption: {
+        JSFramework: "none",
+        JSSuperset: "none",
+        JSLibrary: "none",
+        CSSinJS: "none",
+	}
 };
 
 interface IActions{

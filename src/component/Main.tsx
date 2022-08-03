@@ -3,7 +3,6 @@ import styled from '@emotion/styled'
 import Dialog from './Dialog';
 import useFetch from '../hooks/useFetch';
 import { useSelector } from 'react-redux';
-import { json } from 'stream/consumers';
 
 const CodeBoxWrap = styled.main`
     width: 100vw;
@@ -34,6 +33,7 @@ const CodeBoxTitle = styled.h2`
     margin: 0;
     position: absolute;
     bottom: 15px;
+    z-index: -1;
 `
 
 interface IText{
@@ -46,11 +46,9 @@ interface IText{
 
 const Main: React.FunctionComponent = () => {
 
-    const nowOption = useSelector((state: any) => state.nowOption);
+    const nowOption: string = useSelector((state: any) => state.nowOption);
     const texts : IText[] = useFetch("http://localhost:3000/texts");
     var text: IText = texts.filter(text => text.name === nowOption)[0];
-
-    console.log(text);
 
     if(text === undefined){
         text = {

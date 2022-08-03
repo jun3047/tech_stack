@@ -39,7 +39,7 @@ const Dialog: React.FunctionComponent = () => {
         <div className="Dialog" style={isShowDialog? loaclStyle : {display: "none"}} onMouseDown={dragStart} onMouseMove={dragging} onMouseUp={dragEnd}>
             <div className='DialogTitle'>Tech Stack</div>
             <div className='Contents'>
-                <Meun />
+                <Meun title= "JavaScript Framework" meun={["React", "Angular", "Vue.js"]}/>
             </div>
         </div>
     )

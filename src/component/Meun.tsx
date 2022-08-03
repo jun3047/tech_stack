@@ -3,27 +3,34 @@ import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux';
 
 
-const Meun: React.FunctionComponent = () => {
+interface IMeun{
+    title: string;
+    meun: string[];
+}
+
+const Meun = (props: IMeun) => {
 
     const [reactIsOn, setReactIsOn] = useState(false);
     const [angularIsOn, setAngularIsOn] = useState(false);
     const [vueIsOn, setVueIsOn] = useState(false);
-    const [Option, setOption] = useState({
-        JSFramework: "none",
-        JSSuperset: "none",
-        JSLibrary: "none",
-        CSSinJS: "none",
-    });
-
-    const objToStr = (a: object) => {
-        var options = Object.values(a);
-        const b: string = `${options[0]}-${options[1]}-${options[2]}-${options[3]}`;
-        return b;
-    }
-    const nowOtption = objToStr(Option)
     
-    const dispatch = useDispatch();
-    dispatch({type: 'UPDATE_OPTION', text: nowOtption});
+    // const [Option, setOption] = useState({
+    //     JSFramework: "none",
+    //     JSSuperset: "none",
+    //     JSLibrary: "none",
+    //     CSSinJS: "none",
+    // });
+
+    // const objToStr = (a: object) => {
+    //     var options = Object.values(a);
+    //     const b: string = `${options[0]}-${options[1]}-${options[2]}-${options[3]}`;
+    //     return b;
+    // }
+    
+    // const nowOtption = objToStr(Option)
+    
+    // const dispatch = useDispatch();
+    // dispatch({type: 'UPDATE_OPTION', text: nowOtption});
     
 
     const onClick = (option: string) => {
@@ -79,8 +86,7 @@ const Meun: React.FunctionComponent = () => {
             </MeunWrap>
             <MeunWrap>
                 <MeunTitle>JavaScript Superset</MeunTitle>
-                <MeunBtn onClick={() => {console.log(Option)
-                }}>TypeScript</MeunBtn>
+                <MeunBtn>TypeScript</MeunBtn>
                 <MeunBtn>Flow</MeunBtn>
             </MeunWrap>
             <MeunWrap>
