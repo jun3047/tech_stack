@@ -5,6 +5,7 @@ import Meun from './Meun';
 
 const Dialog: React.FunctionComponent = () => {
 
+
     const [diffX, setDiffX] = useState<number>();
     const [diffY, setDiffY] = useState<number>();
     const [isDragging, setIsDragging] = useState<boolean>(false);

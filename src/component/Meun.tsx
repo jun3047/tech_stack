@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
-import { updateFor } from 'typescript';
+import { useDispatch } from 'react-redux';
+
 
 const Meun: React.FunctionComponent = () => {
 
@@ -13,6 +14,17 @@ const Meun: React.FunctionComponent = () => {
         JSLibrary: "none",
         CSSinJS: "none",
     });
+
+    const objToStr = (a: object) => {
+        var options = Object.values(a);
+        const b: string = `${options[0]}-${options[1]}-${options[2]}-${options[3]}`;
+        return b;
+    }
+    const nowOtption = objToStr(Option)
+    
+    const dispatch = useDispatch();
+    dispatch({type: 'UPDATE_OPTION', text: nowOtption});
+    
 
     const onClick = (option: string) => {
 
@@ -57,13 +69,6 @@ const Meun: React.FunctionComponent = () => {
 
     //useState의 업데이트는 한 컴포넌트가 끝난 후에 작동한다
 
-    const onClick2 = () => {
-        console.log(Option);
-        console.log(reactIsOn);
-        console.log(angularIsOn);
-        console.log(vueIsOn);
-    }
-
     return (
         <>
             <MeunWrap>
@@ -74,7 +79,8 @@ const Meun: React.FunctionComponent = () => {
             </MeunWrap>
             <MeunWrap>
                 <MeunTitle>JavaScript Superset</MeunTitle>
-                <MeunBtn onClick={onClick2}>TypeScript</MeunBtn>
+                <MeunBtn onClick={() => {console.log(Option)
+                }}>TypeScript</MeunBtn>
                 <MeunBtn>Flow</MeunBtn>
             </MeunWrap>
             <MeunWrap>

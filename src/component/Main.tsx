@@ -1,18 +1,27 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled'
 import Dialog from './Dialog';
+import useFetch from '../hooks/useFetch';
+import { useSelector } from 'react-redux';
+import { json } from 'stream/consumers';
 
 const CodeBoxWrap = styled.main`
     width: 100vw;
-    height: calc(100vh - 52px);
+    height: calc(100vh - 62px);
     display: flex;
 `
 
 const CodeBox = styled.div`
     flex: 1;
-    width: 100%;
     border: 0.5px solid black;
     padding: 15px;
+    flex-basis: 0;
+    display: flex;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 `
 
 const Code = styled.div`
@@ -24,11 +33,33 @@ const CodeBoxTitle = styled.h2`
     font-size: 34px;
     margin: 0;
     position: absolute;
-    left: 30px;
-    bottom: 19px;
+    bottom: 15px;
 `
 
+interface IText{
+    name: string;
+    js : string,
+    css : string,
+    html : string,
+}
+
+
 const Main: React.FunctionComponent = () => {
+
+    const nowOption = useSelector((state: any) => state.nowOption);
+    const texts : IText[] = useFetch("http://localhost:3000/texts");
+    var text: IText = texts.filter(text => text.name === nowOption)[0];
+
+    console.log(text);
+
+    if(text === undefined){
+        text = {
+            "name": "none-none-none-none",
+            "js" : "js",
+            "css": "css",
+            "html": "html"
+        }
+    }
 
     return (
         <>
@@ -36,21 +67,27 @@ const Main: React.FunctionComponent = () => {
             <CodeBoxWrap>
                 <CodeBox>
                     <Code>
-                    const CodeBoxTitle = styled.h2` <br />
-        &nbsp; &nbsp; &nbsp; &nbsp; font-weight: 700; <br />
-        &nbsp; &nbsp; &nbsp; &nbsp; font-size: 34px; <br />
-        &nbsp; &nbsp; &nbsp; &nbsp; margin: 0; <br />
-        &nbsp; &nbsp; &nbsp; &nbsp; position: absolute; <br />
-        &nbsp; &nbsp; &nbsp; &nbsp; left: 30px; <br />
-        &nbsp; &nbsp; &nbsp; &nbsp; bottom: 19px; <br />
-    `                </Code>
+                        {text.js}
+                    </Code>
                     <CodeBoxTitle>
                         JavaScript
                     </CodeBoxTitle>
                 </CodeBox>
                 <CodeBox>
+                    <Code>
+                        {text.html}
+                    </Code>
+                    <CodeBoxTitle>
+                        HTML
+                    </CodeBoxTitle>
                 </CodeBox>
                 <CodeBox>
+                    <Code>
+                        {text.css}
+                    </Code>
+                    <CodeBoxTitle>
+                        CSS
+                    </CodeBoxTitle>
                 </CodeBox>
             </CodeBoxWrap>
         </>
