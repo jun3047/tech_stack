@@ -24,7 +24,7 @@ interface IActions{
 	text: string
 }
 
-const reducer = (state: any = initialState, action:IActions) => {
+const reducer = (state: any = initialState, action: IActions) => {
 
 	switch (action.type){
 		case CHANGE_DIALOG:
