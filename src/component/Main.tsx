@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/styled'
 import Dialog from './Dialog';
 import useFetch from '../hooks/useFetch';
@@ -46,7 +46,9 @@ interface IText{
 
 const Main: React.FunctionComponent = () => {
 
+
     const nowOption: string = useSelector((state: any) => state.nowOption);
+    console.log(nowOption);
     const texts : IText[] = useFetch("http://localhost:3000/texts");
     var text: IText = texts.filter(text => text.name === nowOption)[0];
 
@@ -64,9 +66,11 @@ const Main: React.FunctionComponent = () => {
             <Dialog/>
             <CodeBoxWrap>
                 <CodeBox>
-                    <Code>
-                        {text.js}
-                    </Code>
+                        <>
+                            {useEffect(function (): any {
+                                return text.js
+                            },[Option])}
+                        </>
                     <CodeBoxTitle>
                         JavaScript
                     </CodeBoxTitle>

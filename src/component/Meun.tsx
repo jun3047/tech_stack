@@ -1,105 +1,80 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux';
 
 
 interface IMeun{
     title: string;
-    meun: string[];
+    meuns: string[];
 }
 
 const Meun = (props: IMeun) => {
-
-    const [reactIsOn, setReactIsOn] = useState(false);
-    const [angularIsOn, setAngularIsOn] = useState(false);
-    const [vueIsOn, setVueIsOn] = useState(false);
     
+    console.log("Meun!");
+    
+
+    const {meuns, title} = props
+    const dispatch = useDispatch()
+
     const [Option, setOption] = useState({
-        JSFramework: "none",
-        JSSuperset: "none",
-        JSLibrary: "none",
-        CSSinJS: "none",
+        'JavaScript Framework': "none",
+        'JaveScript Superset': "none",
+        'JaveScript Library': "none",
+        'CSS in Js': "none",
     });
 
+    const [meunActive, setMeunActive] = useState(()=>{
+        var map = new Map()
+        for (const meun in meuns) map.set(meun, false)
+        return map
+    })
+    
     const objToStr = (a: object) => {
-        var options = Object.values(a);
-        const b: string = `${options[0]}-${options[1]}-${options[2]}-${options[3]}`;
-        return b;
+        console.log("objToStr");
+        const options = Object.values(a)
+        return `${options[0]}-${options[1]}-${options[2]}-${options[3]}`;
     }
-    
-    const nowOtption = objToStr(Option)
-    
-    const dispatch = useDispatch();
-    dispatch({type: 'UPDATE_OPTION', text: nowOtption});
-    
 
     const onClick = (option: string) => {
+        console.log("onClickStart");
+        
+        var map = new Map()
 
-        if(option === 'react') {
-            if(reactIsOn) {
-                setReactIsOn(false);
-                option = 'none';
-            }else
+        meuns.map((meun: string) =>
             {
-                setReactIsOn(true);
+                if(option === meun) {
+                    if(meunActive.get(meun)) {
+                        option = 'none'
+                        map.set(meun, false)
+                    }else
+                    {
+                        map.set(meun, true)
+                    }
+                }else{
+                    map.set(meun, false)
+                }
             }
-        }else{
-            setReactIsOn(false);
-        }
+        )
 
-        if(option === 'angular') {
-            if(angularIsOn) {
-                setAngularIsOn(false);
-                option = 'none';
-            }else
-            {
-                setAngularIsOn(true);
-            }
-        }else{
-            setAngularIsOn(false);
-        }
-
-        if(option === 'vuejs') {
-            if(vueIsOn) {
-                setVueIsOn(false);
-                option = 'none';
-            }else
-            {
-                setVueIsOn(true);
-            }
-        }else{
-            setVueIsOn(false);
-        }
-
-        setOption({ ...Option, JSFramework: option });
+        dispatch({type: 'UPDATE_OPTION', text: objToStr(Option)})
+        setOption({ ...Option, [title] : option})
+        setMeunActive(map)
     }
 
-    //useState의 업데이트는 한 컴포넌트가 끝난 후에 작동한다
-
-    
+    //useState의 업데이트는 한 컴포넌트가 끝난 후에 작동한다 지연이 있다는 뜻
 
     return (
         <>
             <MeunWrap>
-                <MeunTitle>JavaScript Framework</MeunTitle>
-                <MeunBtn onClick={() => { onClick("react") }} isOn={reactIsOn}>React</MeunBtn>
-                <MeunBtn onClick={() => { onClick("angular") }} isOn={angularIsOn}>Angular</MeunBtn>
-                <MeunBtn onClick={() => { onClick('vuejs') }} isOn={vueIsOn}>Vue.js</MeunBtn>
-            </MeunWrap>
-            <MeunWrap>
-                <MeunTitle>JavaScript Superset</MeunTitle>
-                <MeunBtn>TypeScript</MeunBtn>
-                <MeunBtn>Flow</MeunBtn>
-            </MeunWrap>
-            <MeunWrap>
-                <MeunTitle>JavaScript Library</MeunTitle>
-                <MeunBtn>jQuery</MeunBtn>
-                <MeunBtn>core-js</MeunBtn>
-            </MeunWrap>
-            <MeunWrap>
-                <MeunTitle>CSS in JS</MeunTitle>
-                <MeunBtn>styled-components</MeunBtn>
-                <MeunBtn>Emotion</MeunBtn>
+                <MeunTitle>{props.title}</MeunTitle>
+                <>
+                    {
+                        useEffect(()=> {
+                            meuns.map((meun) =>
+                        <MeunBtn onClick={() => { onClick(meun) }} isOn={meunActive.get(meun)}>{meun}</MeunBtn>)
+                        }, [Option])
+                    }
+                </>
             </MeunWrap>
         </>
     )
@@ -110,15 +85,15 @@ type MeunBtnProps = {
 }
 
 const MeunBtn = styled.button`
-background: ${(props: MeunBtnProps) => props.isOn ? '#3FDCE5' : 'white'};
-border: 1px solid #000000; 
-border-radius: 14px;
-padding: 7px 8px;
-margin-right: 15px;
+    background: ${(props: MeunBtnProps) => props.isOn? '#3FDCE5' : 'white'};
+    border: 1px solid #000000; 
+    border-radius: 14px;
+    padding: 7px 8px;
+    margin-right: 15px;
 
-:hover{
-    background-color: ${(props: MeunBtnProps) => props.isOn ? '#3FDCE5' : '#EEEEEE'};
-}
+    :hover{
+        background-color: ${(props: MeunBtnProps) => props.isOn? '#3FDCE5' : '#EEEEEE'};
+    }
 `
 
 const MeunWrap = styled.div`

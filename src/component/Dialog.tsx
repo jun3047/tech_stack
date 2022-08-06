@@ -5,7 +5,6 @@ import Meun from './Meun';
 
 const Dialog: React.FunctionComponent = () => {
 
-
     const [diffX, setDiffX] = useState<number>();
     const [diffY, setDiffY] = useState<number>();
     const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -39,7 +38,10 @@ const Dialog: React.FunctionComponent = () => {
         <div className="Dialog" style={isShowDialog? loaclStyle : {display: "none"}} onMouseDown={dragStart} onMouseMove={dragging} onMouseUp={dragEnd}>
             <div className='DialogTitle'>Tech Stack</div>
             <div className='Contents'>
-                <Meun title= "JavaScript Framework" meun={["React", "Angular", "Vue.js"]}/>
+                <Meun title= "JavaScript Framework" meuns= {["react", "angular", "vuejs"]}/>
+                <Meun title= "JaveScript Superset" meuns= {["TypeScript", "Flow"]}/>
+                <Meun title= "JaveScript Library" meuns= {["jQuery", "core-js"]}/>
+                <Meun title= "CSS in Js" meuns= {["styled-components", "Emotion"]}/>
             </div>
         </div>
     )
