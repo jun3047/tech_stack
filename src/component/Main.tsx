@@ -47,7 +47,7 @@ interface IText{
 const Main: React.FunctionComponent = () => {
 
     const nowOption: string = useSelector((state: any) => state.nowOption);
-    const texts : IText[] = useFetch("http://localhost:3000/texts");
+    const texts : IText[] = useFetch("http://localhost:3001/texts");
     var text: IText = texts.filter(text => text.name === nowOption)[0];
 
     if(text === undefined){
