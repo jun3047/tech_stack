@@ -23,6 +23,18 @@
             "js" : "vuejs",
             "css": "css",
             "html": "html"
+        },
+        {
+            "name": "none-TypeScript-none-none",
+            "js" : "Type",
+            "css": "css",
+            "html": "html"
+        },
+        {
+            "name": "none-Flow-none-none",
+            "js" : "Flow",
+            "css": "css",
+            "html": "html"
         }
     ]
 }

@@ -24,19 +24,25 @@ const Meun = (props: IMeun) => {
     });
 
     const [meunActive, setMeunActive] = useState(()=>{
+        
         var map = new Map()
-        for (const meun in meuns) map.set(meun, false)
+        for (const meun in meuns) {
+            map.set(meun, false)
+        }
         return map
     })
-    
+
     const objToStr = (a: object) => {
-        console.log("objToStr");
         const options = Object.values(a)
         return `${options[0]}-${options[1]}-${options[2]}-${options[3]}`;
     }
 
+
+    useEffect(()=>{
+        dispatch({type: 'UPDATE_OPTION', text: objToStr(Option)})
+    },[Option])
+    
     const onClick = (option: string) => {
-        console.log("onClickStart");
         
         var map = new Map()
 
@@ -56,7 +62,8 @@ const Meun = (props: IMeun) => {
             }
         )
 
-        dispatch({type: 'UPDATE_OPTION', text: objToStr(Option)})
+        console.log("testStart");
+        console.log(Option);
         setOption({ ...Option, [title] : option})
         setMeunActive(map)
     }
@@ -67,14 +74,10 @@ const Meun = (props: IMeun) => {
         <>
             <MeunWrap>
                 <MeunTitle>{props.title}</MeunTitle>
+                {meuns.map((meun) => 
                 <>
-                    {
-                        useEffect(()=> {
-                            meuns.map((meun) =>
-                        <MeunBtn onClick={() => { onClick(meun) }} isOn={meunActive.get(meun)}>{meun}</MeunBtn>)
-                        }, [Option])
-                    }
-                </>
+                    <MeunBtn onClick={() => { onClick(meun) }} isOn={meunActive.get(meun)}>{meun}</MeunBtn>
+                </>)}
             </MeunWrap>
         </>
     )

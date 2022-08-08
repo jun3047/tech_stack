@@ -46,9 +46,7 @@ interface IText{
 
 const Main: React.FunctionComponent = () => {
 
-
     const nowOption: string = useSelector((state: any) => state.nowOption);
-    console.log(nowOption);
     const texts : IText[] = useFetch("http://localhost:3000/texts");
     var text: IText = texts.filter(text => text.name === nowOption)[0];
 
@@ -66,11 +64,7 @@ const Main: React.FunctionComponent = () => {
             <Dialog/>
             <CodeBoxWrap>
                 <CodeBox>
-                        <>
-                            {useEffect(function (): any {
-                                return text.js
-                            },[Option])}
-                        </>
+                    {text.js}
                     <CodeBoxTitle>
                         JavaScript
                     </CodeBoxTitle>

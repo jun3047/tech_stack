@@ -1,3 +1,4 @@
+import { stringify } from 'querystring';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import './Dialog.css';
@@ -29,11 +30,13 @@ const Dialog: React.FunctionComponent = () => {
     }
 
     const dragEnd = (e: React.MouseEvent<HTMLButtonElement> | any) => {
-        setIsDragging(false);
+        setIsDragging(false)
     }
 
-    const isShowDialog = useSelector((state: any) => state.isShowDialog);
-
+    const state = useSelector((state: any) => state)
+    const isShowDialog: boolean = state.isShowDialog
+    const nowOption: object = state.nowOption
+    
     return (
         <div className="Dialog" style={isShowDialog? loaclStyle : {display: "none"}} onMouseDown={dragStart} onMouseMove={dragging} onMouseUp={dragEnd}>
             <div className='DialogTitle'>Tech Stack</div>
@@ -42,6 +45,7 @@ const Dialog: React.FunctionComponent = () => {
                 <Meun title= "JaveScript Superset" meuns= {["TypeScript", "Flow"]}/>
                 <Meun title= "JaveScript Library" meuns= {["jQuery", "core-js"]}/>
                 <Meun title= "CSS in Js" meuns= {["styled-components", "Emotion"]}/>
+                {JSON.stringify(nowOption)}
             </div>
         </div>
     )
