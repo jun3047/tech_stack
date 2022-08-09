@@ -35,6 +35,12 @@
             "js" : "Flow",
             "css": "css",
             "html": "html"
+        },
+        {
+            "name": "react-Flow-none-none",
+            "js" : "Flow",
+            "css": "css",
+            "html": "html"
         }
     ]
 }

@@ -10,9 +10,6 @@ interface IMeun{
 
 const Meun = (props: IMeun) => {
     
-    console.log("Meun!");
-    
-
     const {meuns, title} = props
     const dispatch = useDispatch()
 
@@ -24,7 +21,6 @@ const Meun = (props: IMeun) => {
     });
 
     const [meunActive, setMeunActive] = useState(()=>{
-        
         var map = new Map()
         for (const meun in meuns) {
             map.set(meun, false)
@@ -36,7 +32,6 @@ const Meun = (props: IMeun) => {
         const options = Object.values(a)
         return `${options[0]}-${options[1]}-${options[2]}-${options[3]}`;
     }
-
 
     useEffect(()=>{
         dispatch({type: 'UPDATE_OPTION', text: objToStr(Option)})
@@ -62,9 +57,7 @@ const Meun = (props: IMeun) => {
             }
         )
 
-        console.log("testStart");
-        console.log(Option);
-        setOption({ ...Option, [title] : option})
+        setOption({...Option, [title] : option})
         setMeunActive(map)
     }
 
@@ -76,7 +69,7 @@ const Meun = (props: IMeun) => {
                 <MeunTitle>{props.title}</MeunTitle>
                 {meuns.map((meun) => 
                 <>
-                    <MeunBtn onClick={() => { onClick(meun) }} isOn={meunActive.get(meun)}>{meun}</MeunBtn>
+                    <MeunBtn onClick={() => {onClick(meun)}} isOn={meunActive.get(meun)}>{meun}</MeunBtn>
                 </>)}
             </MeunWrap>
         </>

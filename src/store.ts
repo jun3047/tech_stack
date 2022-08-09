@@ -12,10 +12,10 @@ const UPDATE_OPTION = 'UPDATE_OPTION';
 const initialState = {
 	isShowDialog: false,
 	nowOption: {
-		'JavaScript Framework': "none",
-        'JaveScript Superset': "none",
-        'JaveScript Library': "none",
-        'CSS in Js': "none",
+		"JavaScript Framework": "none",
+        "JaveScript Superset": "none",
+        "JaveScript Library": "none",
+        "CSS in Js": "none",
 	}
 };
 
