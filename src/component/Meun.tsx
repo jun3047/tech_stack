@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux';
 
@@ -21,7 +21,7 @@ const Meun = (props: IMeun) => {
     });
 
     const [meunActive, setMeunActive] = useState(()=>{
-        var map = new Map()
+        let map = new Map()
         for (const meun in meuns) {
             map.set(meun, false)
         }
@@ -39,7 +39,7 @@ const Meun = (props: IMeun) => {
     
     const onClick = (option: string) => {
         
-        var map = new Map()
+        let map = new Map()
 
         meuns.map((meun: string) =>
             {
