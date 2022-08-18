@@ -9,19 +9,25 @@ const UPDATE_OPTION = 'UPDATE_OPTION';
 
 //action?
 
-const initialState = {
+interface IProps{
+	isShowDialog: boolean,
+	nowOption: object
+}
+
+const initialState: IProps = {
 	isShowDialog: false,
 	nowOption: {
 		"JavaScript Framework": "none",
-        "JaveScript Superset": "none",
-        "JaveScript Library": "none",
-        "CSS in Js": "none",
+		"JavaScript Superset": "none",
+		"JavaScript Library": "none",
+		"CSS in Js": "none",
 	}
 };
 
 interface IActions{
 	type: string,
-	text: string
+	option: string,
+	title: string
 }
 
 const reducer = (state: any = initialState, action: IActions) => {
@@ -35,7 +41,7 @@ const reducer = (state: any = initialState, action: IActions) => {
 		case UPDATE_OPTION:
 			return{
 				...state,
-				nowOption: action.text
+				nowOption: {[action.title]: [action.option]}
 			}
 		default:
 			return state;

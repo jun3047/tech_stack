@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { useDispatch } from 'react-redux';
 
@@ -8,17 +8,15 @@ interface IMeun{
     meuns: string[];
 }
 
+
 const Meun = (props: IMeun) => {
     
     const {meuns, title} = props
     const dispatch = useDispatch()
 
-    const [Option, setOption] = useState({
-        'JavaScript Framework': "none",
-        'JaveScript Superset': "none",
-        'JaveScript Library': "none",
-        'CSS in Js': "none",
-    });
+    const [Option, setOption] = useState("none")    
+
+    console.log(Option);
 
     const [meunActive, setMeunActive] = useState(()=>{
         let map = new Map()
@@ -28,37 +26,34 @@ const Meun = (props: IMeun) => {
         return map
     })
 
-    const objToStr = (a: object) => {
-        const options = Object.values(a)
-        return `${options[0]}-${options[1]}-${options[2]}-${options[3]}`;
-    }
-
     useEffect(()=>{
-        dispatch({type: 'UPDATE_OPTION', text: objToStr(Option)})
+        dispatch({type: 'UPDATE_OPTION', option: Option, title: title})
     },[Option])
     
     const onClick = (option: string) => {
-        
-        let map = new Map()
+        console.log("click");
+
+        let tempMeuns: Map<string, boolean> = new Map()
 
         meuns.map((meun: string) =>
             {
                 if(option === meun) {
-                    if(meunActive.get(meun)) {
-                        option = 'none'
-                        map.set(meun, false)
+                    if(meunActive.get(meun)) {console.log(Option);
+                        setOption("none")
+                        tempMeuns.set(meun, false)
                     }else
-                    {
-                        map.set(meun, true)
+                    {console.log(Option);
+                        setOption(meun)
+                        tempMeuns.set(meun, true)
                     }
-                }else{
-                    map.set(meun, false)
+                }else{console.log(Option);
+                    setOption("none")
+                    tempMeuns.set(title, false)
                 }
             }
         )
 
-        setOption({...Option, [title] : option})
-        setMeunActive(map)
+        setMeunActive(tempMeuns)
     }
 
     //useState의 업데이트는 한 컴포넌트가 끝난 후에 작동한다 지연이 있다는 뜻
@@ -67,9 +62,9 @@ const Meun = (props: IMeun) => {
         <>
             <MeunWrap>
                 <MeunTitle>{props.title}</MeunTitle>
-                {meuns.map((meun) => 
+                {meuns.map((meun, index) => 
                 <>
-                    <MeunBtn onClick={() => {onClick(meun)}} isOn={meunActive.get(meun)}>{meun}</MeunBtn>
+                    <MeunBtn key={index} onClick={() => {onClick(meun)}} isOn={meunActive.get(meun)}>{meun}</MeunBtn>
                 </>)}
             </MeunWrap>
         </>
@@ -102,6 +97,6 @@ const MeunTitle = styled.h3`
     margin: 0;
     padding-bottom: 10px;
     font-size: 14px;
-`
+    `
 
 export default Meun
